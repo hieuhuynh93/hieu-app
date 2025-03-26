@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function GET(request: NextRequest) { 
     const { searchParams } = new URL(request.url);
     const ip = searchParams.get("ip");
-    let ipParams: string = '';
-    console.log(ip)
+    let ipParams: string = `&ip=${request.headers.get("x-forwarded-for")?.split(",")[0]}`;
     if (ip) {
         ipParams = `&ip=${ip}`;
     }
@@ -17,4 +16,10 @@ export async function GET(request: NextRequest) {
     const geoip = await res.json();
 
     return NextResponse.json(geoip);
-}
+} 
+
+export const config = {
+    matcher: "/api/:path*",
+    runtime: "edge",
+    fetch: { ip: true },
+};
