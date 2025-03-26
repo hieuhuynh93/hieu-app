@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={`antialiased bg-base-200`}
       >
-        <AppHeader />
+        {/* <AppHeader /> */}
         {children}
         <PrelineScriptWrapper />
       </body>

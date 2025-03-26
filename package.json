@@ -15,8 +15,10 @@
     "lodash": "^4.17.21",
     "next": "15.2.4",
     "nouislider": "^15.8.1",
+    "preline": "^3.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5",
     "vanilla-calendar-pro": "^3.0.3"
   },
   "devDependencies": {
