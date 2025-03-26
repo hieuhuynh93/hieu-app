@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import PrelineScriptWrapper from '@components/PrelineScriptWrapper';
 import "./globals.css";
-import AppHeader from "@components/header/app.header";
-
 
 export const metadata: Metadata = {
   title: "GeoIP Lookup",
