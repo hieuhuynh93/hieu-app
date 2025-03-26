@@ -1,17 +1,17 @@
 
 'use client'
-import IpDataProps from "@interfaces/IGeoData"
-import { getCurrentIpData, getIpData } from "@apis/ip";
+import IPGeolocationData from "@interfaces/IGeoData"
+import { getCurrentIpData, getIpData } from "@actions/ip";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
 const IpData = () => { 
     const [ip, setIp] = useState<string>('')
-    const [data, setData] = useState({} as IpDataProps)
+    const [data, setData] = useState({} as IPGeolocationData)
 
     useEffect(() => { 
         const fetchData = async () => {
-            const ipData: IpDataProps = await getCurrentIpData();
+          const ipData: IPGeolocationData  = await getCurrentIpData();
             setData(ipData);
         }
         fetchData()
@@ -19,8 +19,8 @@ const IpData = () => {
     
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const getIp: IpDataProps = await getIpData(ip);
-        if (getIp.status === 'fail') { 
+        const getIp: IPGeolocationData = await getIpData(ip);
+        if (getIp?.message) { 
             toast("Invalid IP address");
         } else {
             setData(getIp);
@@ -62,20 +62,20 @@ const IpData = () => {
 
                 <div className="flex flex-col mt-5 text-left bg-white border border-gray-200 shadow-2xs rounded-xl">
                     <div className="flex items-center justify-between p-3 border-b border-gray-200">
-                        <span className="text-lg font-bold text-gray-500">{data.query}</span>
+                        <span className="text-lg font-bold text-gray-500">{data.ip}</span>
                     </div>
                     <div className="p-4">
                         <ul className="mt-0">
-                            <li className="text-sm text-gray-600"><strong>Country:</strong> {data.country} ({data.countryCode})</li>
-                            <li className="text-sm text-gray-600"><strong>Region:</strong> {data.region} ({data.regionName})</li>
+                    <li className="text-sm text-gray-600"><strong>Country:</strong> {data.country_name} ({data.country_emoji})</li>
+                    <li className="text-sm text-gray-600"><strong>Capital:</strong> {data.country_capital}</li>
                             <li className="text-sm text-gray-600"><strong>City:</strong> {data.city}</li>
-                            <li className="text-sm text-gray-600"><strong>ZIP:</strong> {data.zip}</li>
-                            <li className="text-sm text-gray-600"><strong>Latitude:</strong> {data.lat}</li>
-                            <li className="text-sm text-gray-600"><strong>Longitude:</strong> {data.lon}</li>
-                            <li className="text-sm text-gray-600"><strong>Timezone:</strong> {data.timezone}</li>
+                            <li className="text-sm text-gray-600"><strong>District:</strong> {data.district}</li>
+                            <li className="text-sm text-gray-600"><strong>ZIP:</strong> {data.zipcode}</li>
+                            <li className="text-sm text-gray-600"><strong>Latitude:</strong> {data.latitude}</li>
+                            <li className="text-sm text-gray-600"><strong>Longitude:</strong> {data.longitude}</li>
+                            <li className="text-sm text-gray-600"><strong>Timezone:</strong> {data.time_zone?.name}</li>
                             <li className="text-sm text-gray-600"><strong>ISP:</strong> {data.isp}</li>
-                            <li className="text-sm text-gray-600"><strong>Organization:</strong> {data.org}</li>
-                            <li className="text-sm text-gray-600"><strong>AS:</strong> {data.as}</li>
+                            <li className="text-sm text-gray-600"><strong>Organization:</strong> {data.organization}</li>
                         </ul>
                     </div>
                 </div>
