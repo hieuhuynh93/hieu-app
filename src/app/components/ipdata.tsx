@@ -41,7 +41,7 @@ const IpData = () => {
                     <input type="text" value={ip} onChange={(e) => setIp(e.target.value)} className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500" placeholder="Lookup IP..." />
                   </div>
                   <div>
-                    <button className="inline-flex items-center justify-center text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg size-11 gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
+                    <button className="inline-flex items-center justify-center text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg size-11 gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                       <svg className="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </button>
                   </div>
